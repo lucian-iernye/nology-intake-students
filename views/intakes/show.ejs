@@ -1,5 +1,5 @@
 <h2 class="page-header">Intake: <%= intake.name %></h2>
-<p>Location: <%= intake.location %></p>
+<h3>Location: <%= intake.location %></h3>
 <div class="btn-row">
   <a class="btn btn-primary" href="/intakes/<%= intake.id %>/edit">Edit</a>
   <%- include ("../partials/deleteForm", {url: `/intakes/${intake.id}`}) %>

@@ -1,10 +1,10 @@
-<h2 class="page-header"><%= student.title %></h2>
+<h2 class="page-header"><%= student.name %></h2>
 <div class="student-details">
   <div>
     <img
       class="student-cover"
       src="<%= student.coverImagePath %> "
-      alt="<%= student.title %> "
+      alt="<%= student.name %> "
     />
     <div class="student-details-btn-grid">
       <a class="btn btn-primary" href="/students/<%= student.id %>/edit"
@@ -21,11 +21,13 @@
   <div class="student-details-grid">
     <div class="student-details-label">Intake:</div>
     <div><%= student.intake.name %></div>
-    <div class="student-details-label">Publish Date:</div>
-    <div><%= student.publishDate.toDateString() %></div>
-    <div class="student-details-label">Page Count:</div>
-    <%= student.pageCount %>
-    <div class="student-details-label">Description:</div>
-    <%= student.description %>
+    <div class="student-details-label">Enrolment Date:</div>
+    <div><%= student.enrolmentDate.toDateString() %></div>
+    <div class="student-details-label">Date of Birth:</div>
+    <div><%= student.dateOfBirth.toDateString() %></div>
+    <div class="student-details-label">Age:</div>
+    <%= student.age %>
+    <div class="student-details-label">About:</div>
+    <%= student.about %>
   </div>
 </div>

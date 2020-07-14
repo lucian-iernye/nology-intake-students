@@ -2,11 +2,14 @@
 studentGridClass = locals.large ? "student-grid-large" : "" %>
 <div class="student-grid <%= studentCoverClass %>">
   <% students.forEach(student => { %>
-  <a href="/students/<%= student.id %> "
-    ><img
-      class="student-cover <%= studentCoverClass %>"
-      src="<%= student.coverImagePath %> "
-      alt="<%= student.title %> "
-  /></a>
+  <div>
+    <a href="/students/<%= student.id %> "
+      ><img
+        class="student-cover <%= studentCoverClass %>"
+        src="<%= student.coverImagePath %> "
+        alt="<%= student.name %> "
+    /></a>
+    <p><%= student.name %></p>
+  </div>
   <% }) %>
 </div>

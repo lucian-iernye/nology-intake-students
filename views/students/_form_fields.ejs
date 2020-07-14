@@ -1,8 +1,13 @@
 <div class="form-row">
   <div class="form-item">
-    <label for="name">Title</label>
+    <label for="name">Name and Surname</label>
     <!-- we included the ejs code so we can import dinamicaly the title of the current student -->
-    <input type="text" name="title" value="<%=student.title %>" />
+    <input
+      type="text"
+      name="name"
+      value="<%=student.name %>"
+      placeholder="Write the name of the student"
+    />
   </div>
   <div class="form-item">
     <label for="intake">Intake</label>
@@ -31,31 +36,37 @@
 
 <div class="form-row">
   <div class="form-item">
-    <label for="title">Publish Date</label>
-    <input type="date" name="publishDate" id="" value="<%= student.publishDate
-    == null ? "" : student.publishDate.toISOString().split("T")[0] %>">
+    <label for="enrolment-date">Enrolment Date</label>
+    <input type="date" name="enrolmentDate" id="" value="<%=
+    student.enrolmentDate == null ? "" :
+    student.enrolmentDate.toISOString().split("T")[0] %>">
   </div>
   <div class="form-item">
-    <label for="title">Page Count</label>
-    <input
-      type="number"
-      name="pageCount"
-      id=""
-      min="1"
-      value="<%= student.pageCount %>"
-    />
+    <label for="age">Age</label>
+    <input type="number" name="age" id="" min="18" value="<%= student.age %>" />
+  </div>
+  <div class="form-item">
+    <label for="enrolment-date">Date Of Birth</label>
+    <input type="date" name="dateOfBirth" id="" value="<%= student.dateOfBirth
+    == null ? "" : student.dateOfBirth.toISOString().split("T")[0] %>">
   </div>
 </div>
 
 <div class="form-row">
   <div class="form-item form-item-no-grow">
-    <label for="title">Cover</label>
+    <label for="Picture">Picture</label>
     <input class="student-cover filepond" type="file" name="cover" />
   </div>
   <div class="form-item">
-    <label for="title">Description</label>
-    <textarea name="description" id="" cols="30" rows="10">
-<%= student.description %></textarea
+    <label for="title">About</label>
+    <textarea
+      name="about"
+      id=""
+      cols="30"
+      rows="10"
+      placeholder="Write something about the student"
+    >
+<%= student.about %></textarea
     >
   </div>
 </div>

@@ -2,7 +2,12 @@
   <div class="form-item">
     <label for="name">Name</label>
     <!-- we included the ejs code so we can import dinamicaly the name of the current intake -->
-    <input type="text" name="name" value="<%= intake.name %>" />
+    <input
+      type="text"
+      name="name"
+      value="<%= intake.name %>"
+      placeholder="Write a name"
+    />
     <br />
     <label for="name">Location</label>
     <select name="location" id="location">

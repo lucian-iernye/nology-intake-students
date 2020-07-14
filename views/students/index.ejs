@@ -2,25 +2,25 @@
 <form action="/students" method="GET">
   <div class="form-row">
     <div class="form-item">
-      <label for="name">Title</label>
-      <input type="text" name="title" value="<%= searchOptions.title %> " />
+      <label for="name">Name</label>
+      <input type="text" name="name" value="<%= searchOptions.name %> " />
     </div>
   </div>
   <div class="form-row">
     <div class="form-item">
-      <label for="name">Published After</label>
+      <label for="name">Enrolled After</label>
       <input
         type="date"
-        name="publishedAfter"
-        value="<%= searchOptions.publishedAfter %> "
+        name="enrolledAfter"
+        value="<%= searchOptions.enrolledAfter %> "
       />
     </div>
     <div class="form-item">
-      <label for="name">Published Before</label>
+      <label for="name">Enrolled Before</label>
       <input
         type="date"
-        name="publishedBefore"
-        value="<%= searchOptions.publishedBefore %> "
+        name="enrolledBefore"
+        value="<%= searchOptions.enrolledBefore %> "
       />
     </div>
   </div>

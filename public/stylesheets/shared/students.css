@@ -1,7 +1,7 @@
 :root {
-  --student-cover-width: 200px;
+  --student-cover-width: 250px;
   --student-cover-width-large: 325px;
-  --student-cover-aspect-ratio: 0.75;
+  --student-cover-aspect-ratio: 0.9;
 }
 
 .student-cover {
