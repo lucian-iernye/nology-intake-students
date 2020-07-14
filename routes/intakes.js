@@ -64,7 +64,7 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const intake = await Intake.findById(req.params.id);
-    const students = await Student.find({ intake: intake.id }).limit(6).exec();
+    const students = await Student.find({ intake: intake.id }).limit(30).exec();
     res.render("intakes/show", {
       intake: intake,
       studentsByIntake: students,
