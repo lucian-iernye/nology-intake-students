@@ -7,6 +7,7 @@
       name="name"
       value="<%=student.name %>"
       placeholder="Write the name of the student"
+      required
     />
   </div>
   <div class="form-item">
@@ -37,18 +38,26 @@
 <div class="form-row">
   <div class="form-item">
     <label for="enrolment-date">Enrolment Date</label>
-    <input type="date" name="enrolmentDate" id="" value="<%=
+    <input required type="date" name="enrolmentDate" id="" value="<%=
     student.enrolmentDate == null ? "" :
     student.enrolmentDate.toISOString().split("T")[0] %>">
   </div>
   <div class="form-item">
     <label for="age">Age</label>
-    <input type="number" name="age" id="" min="18" value="<%= student.age %>" />
+    <input
+      required
+      type="number"
+      name="age"
+      id=""
+      min="18"
+      value="<%= student.age %>"
+    />
   </div>
   <div class="form-item">
     <label for="enrolment-date">Date Of Birth</label>
-    <input type="date" name="dateOfBirth" id="" value="<%= student.dateOfBirth
-    == null ? "" : student.dateOfBirth.toISOString().split("T")[0] %>">
+    <input required type="date" name="dateOfBirth" id="" value="<%=
+    student.dateOfBirth == null ? "" :
+    student.dateOfBirth.toISOString().split("T")[0] %>">
   </div>
 </div>
 

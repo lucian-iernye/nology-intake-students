@@ -9,8 +9,7 @@ studentGridClass = locals.large ? "student-grid-large" : "" %>
         src="<%= student.coverImagePath %> "
         alt="<%= student.name %> "
     /></a>
-    <p><a href="/students/<%= student.id %>"
-      ><%= student.name %></p>
+    <p><%= student.name %></p>
   </div>
   <% }) %>
 </div>
