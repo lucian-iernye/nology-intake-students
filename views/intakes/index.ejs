@@ -1,0 +1,25 @@
+<h2 class="page-header">Search Intakes</h2>
+<form action="/intakes" method="GET">
+  <div class="form-row">
+    <div class="form-item">
+      <label for="name">Name</label>
+      <input type="text" name="name" value="<%= searchOptions.name %> " />
+    </div>
+  </div>
+  <div class="form-row form-row-end">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </div>
+</form>
+<br />
+<!-- display the intake name for each intake created -->
+<% intakes.forEach(intake => { %>
+<div class="intake-row">
+  <div class="intake-name"><%= intake.name %></div>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="/intakes/<%= intake.id %>">View</a>
+    <a class="btn btn-primary" href="/intakes/<%= intake.id %>/edit">Edit</a>
+    <%- include ("../partials/deleteForm", {url: `intakes/${intake.id}`}) %>
+    <!--  -->
+  </div>
+</div>
+<% }) %>

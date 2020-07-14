@@ -2,9 +2,9 @@ const express = require("express");
 // router is the controller from MVC
 const router = express.Router();
 
-// we import the Book and Author schemas from the book.js file
-const Book = require("../models/book");
-const Author = require("../models/author");
+// we import the student and intake schemas from the student.js file
+const Student = require("../models/student");
+const Intake = require("../models/intake");
 
 // we create a variable to accept only image files -
 const imageMimeTypes = [
@@ -20,12 +20,12 @@ const imageMimeTypes = [
 
 
 */
-// All Books route
+// All Students route
 router.get("/", async (req, res) => {
-  let query = Book.find();
+  let query = Student.find();
   // logic to show the searched query and hide what doesn't match
   if (req.query.title != null && req.query.title != "") {
-    // title comes from the database model -> Book.title
+    // title comes from the database model -> student.title
     query = query.regex("title", new RegExp(req.query.title, "i"));
   }
   // to filter by date : publishedBefore and publishedAfter
@@ -38,9 +38,9 @@ router.get("/", async (req, res) => {
     query = query.gte("publishDate", req.query.publishedAfter);
   }
   try {
-    const books = await query.exec();
-    res.render("books/index", {
-      books: books,
+    const students = await query.exec();
+    res.render("students/index", {
+      students: students,
       searchOptions: req.query,
     });
   } catch {
@@ -52,32 +52,32 @@ router.get("/", async (req, res) => {
 
 
 */
-// New Book route
+// New Student route
 router.get("/new", async (req, res) => {
-  renderNewPage(res, new Book());
+  renderNewPage(res, new Student());
 });
 /*
 
 
 
 */
-// create Book route
+// create Student route
 router.post("/", async (req, res) => {
-  const book = new Book({
+  const student = new Student({
     title: req.body.title,
-    author: req.body.author,
+    intake: req.body.intake,
     publishDate: new Date(req.body.publishDate),
     pageCount: req.body.pageCount,
     description: req.body.description,
   });
 
-  saveCover(book, req.body.cover);
+  saveCover(student, req.body.cover);
 
   try {
-    const newBook = await book.save();
-    res.redirect(`books/${newBook.id}`);
+    const newStudent = await student.save();
+    res.redirect(`students/${newStudent.id}`);
   } catch {
-    renderNewPage(res, book, true);
+    renderNewPage(res, student, true);
   }
 });
 /*
@@ -85,11 +85,13 @@ router.post("/", async (req, res) => {
 
 
 */
-// show book route
+// show student route
 router.get("/:id", async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id).populate("author").exec();
-    res.render("books/show", { book: book });
+    const student = await Student.findById(req.params.id)
+      .populate("intake")
+      .exec();
+    res.render("students/show", { student: student });
   } catch (error) {
     res.redirect("/");
   }
@@ -99,11 +101,11 @@ router.get("/:id", async (req, res) => {
 
 
 */
-// edit book route
+// edit student route
 router.get("/:id/edit", async (req, res) => {
   try {
-    const book = await Book.findById(req.params.id);
-    renderEditPage(res, book);
+    const student = await Student.findById(req.params.id);
+    renderEditPage(res, student);
   } catch {
     res.redirect("/");
   }
@@ -113,26 +115,26 @@ router.get("/:id/edit", async (req, res) => {
 
 
 */
-// update book route
+// update student route
 router.put("/:id", async (req, res) => {
-  let book;
+  let student;
 
   try {
-    book = await Book.findById(req.params.id);
-    book.title = req.body.title;
-    book.author = req.body.author;
-    book.publishDate = new Date(req.body.publishDate);
-    book.pageCount = req.body.pageCount;
-    book.description = req.body.description;
+    student = await Student.findById(req.params.id);
+    student.title = req.body.title;
+    student.intake = req.body.intake;
+    student.publishDate = new Date(req.body.publishDate);
+    student.pageCount = req.body.pageCount;
+    student.description = req.body.description;
     if (req.body.cover != null && req.body.cover !== "") {
-      saveCover(book, req.body.cover);
+      saveCover(student, req.body.cover);
     }
-    await book.save();
-    res.redirect(`/books/${book.id}`);
+    await student.save();
+    res.redirect(`/students/${student.id}`);
   } catch (err) {
     console.log(err);
-    if (book != null) {
-      renderEditPage(res, book, true);
+    if (student != null) {
+      renderEditPage(res, student, true);
     } else {
       redirect("/");
     }
@@ -143,21 +145,21 @@ router.put("/:id", async (req, res) => {
 
 
 */
-// delete book route
+// delete student route
 // delete is a node/js method
 router.delete("/:id", async (req, res) => {
-  let book;
+  let student;
   try {
-    book = await Book.findById(req.params.id);
+    student = await Student.findById(req.params.id);
     // remove is a mongodb method
-    await book.remove();
-    res.redirect("/books");
+    await student.remove();
+    res.redirect("/students");
   } catch (error) {
     console.log(error);
-    if (book != null) {
-      res.render("books/show", {
-        book: book,
-        errorMessage: "Could not remove book!",
+    if (student != null) {
+      res.render("students/show", {
+        student: student,
+        errorMessage: "Could not remove student!",
       });
     } else {
       res.redirect("/");
@@ -169,40 +171,40 @@ router.delete("/:id", async (req, res) => {
 
 
 */
-async function renderNewPage(res, book, hasError = false) {
-  renderFormPage(res, book, "new", hasError);
+async function renderNewPage(res, student, hasError = false) {
+  renderFormPage(res, student, "new", hasError);
 }
 /*
 
 
 
 */
-async function renderEditPage(res, book, hasError = false) {
-  renderFormPage(res, book, "edit", hasError);
+async function renderEditPage(res, student, hasError = false) {
+  renderFormPage(res, student, "edit", hasError);
 }
 /*
 
 
 
 */
-async function renderFormPage(res, book, form, hasError = false) {
+async function renderFormPage(res, student, form, hasError = false) {
   try {
-    const authors = await Author.find({});
+    const intakes = await Intake.find({});
     const params = {
-      authors: authors,
-      book: book,
+      intakes: intakes,
+      student: student,
     };
     // if we have an error
     if (hasError) {
       if (form === "edit") {
-        params.errorMessage = "Error Updating Book";
+        params.errorMessage = "Error Updating Student";
       } else {
-        params.errorMessage = "Error Creating Book";
+        params.errorMessage = "Error Creating Student";
       }
     }
-    res.render(`books/${form}`, params);
+    res.render(`students/${form}`, params);
   } catch {
-    res.redirect("/books");
+    res.redirect("/students");
   }
 }
 /*
@@ -210,12 +212,12 @@ async function renderFormPage(res, book, form, hasError = false) {
 
 
 */
-function saveCover(book, coverEncoded) {
+function saveCover(student, coverEncoded) {
   if (coverEncoded == null) return;
   const cover = JSON.parse(coverEncoded);
   if (cover != null && imageMimeTypes.includes(cover.type)) {
-    book.coverImage = new Buffer.from(cover.data, "base64");
-    book.coverImageType = cover.type;
+    student.coverImage = new Buffer.from(cover.data, "base64");
+    student.coverImageType = cover.type;
   }
 }
 /*

@@ -1,9 +1,9 @@
-<h2 class="page-header">Edit Book</h2>
+<h2 class="page-header">Edit Student</h2>
 <!-- to implement multer package we need to add enctype="multipart/form-data" to the form which mean we can send different types of data like images /update -> we remove it because we used FilePond package-->
-<form action="/books/<%= book.id %>?_method=PUT " method="POST">
+<form action="/students/<%= student.id %>?_method=PUT " method="POST">
   <%- include("_form_fields") %>
   <div class="form-row form-end-row btn-row">
-    <a class="btn btn-danger" href="/books">Cancel</a>
+    <a class="btn btn-danger" href="/students">Cancel</a>
     <button class="btn btn-primary" type="submit">Update</button>
   </div>
 </form>

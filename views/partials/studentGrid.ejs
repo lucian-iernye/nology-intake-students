@@ -1,0 +1,12 @@
+<% studentCoverClass = locals.large ? "student-cover-large" : "" %> <%
+studentGridClass = locals.large ? "student-grid-large" : "" %>
+<div class="student-grid <%= studentCoverClass %>">
+  <% students.forEach(student => { %>
+  <a href="/students/<%= student.id %> "
+    ><img
+      class="student-cover <%= studentCoverClass %>"
+      src="<%= student.coverImagePath %> "
+      alt="<%= student.title %> "
+  /></a>
+  <% }) %>
+</div>

@@ -1,0 +1,61 @@
+:root {
+  --student-cover-width: 200px;
+  --student-cover-width-large: 325px;
+  --student-cover-aspect-ratio: 0.75;
+}
+
+.student-cover {
+  width: var(--student-cover-width);
+  height: calc(var(--student-cover-width) / var(--student-cover-aspect-ratio));
+}
+
+.student-cover-large {
+  --student-cover-width: var(--student-cover-width-large);
+}
+
+.student-grid {
+  display: grid;
+  justify-content: center;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, var(--student-cover-width));
+}
+
+.student-grid-large {
+  grid-template-columns: repeat(auto-fill, var(--student-cover-width-large));
+}
+
+.student-details {
+  display: flex;
+}
+
+.student-details-label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.student-details-grid {
+  margin-left: 1rem;
+  display: grid;
+  align-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  grid-template-columns: auto auto;
+}
+
+.student-details-btn-grid {
+  display: grid;
+  justify-items: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  grid-template-areas:
+    "edit delete"
+    "intake intake";
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.student-details-intake-button {
+  grid-area: intake;
+  justify-self: stretch;
+}

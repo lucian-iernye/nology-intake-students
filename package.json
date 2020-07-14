@@ -1,7 +1,7 @@
 {
-  "name": "02-nodejs-books-app",
+  "name": "nology-intake-students",
   "version": "1.0.0",
-  "description": "A books library made with Node, Express, MongoDB and deployed to Heroku",
+  "description": "A project to add students to an intake from Nology - made with Node, Express, MongoDB and deployed to Heroku",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lucian-iernye/02-nodejs-books-app.git"
+    "url": "git+https://github.com/lucian-iernye/nology-intake-students.git"
   },
   "author": "Lucian",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lucian-iernye/02-nodejs-books-app/issues"
+    "url": "https://github.com/lucian-iernye/nology-intake-students/issues"
   },
-  "homepage": "https://github.com/lucian-iernye/02-nodejs-books-app#readme",
+  "homepage": "https://github.com/lucian-iernye/nology-intake-students#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.1.3",

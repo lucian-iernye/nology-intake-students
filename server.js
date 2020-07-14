@@ -13,9 +13,9 @@ const methodOverride = require("method-override");
 // we import the index file from the routes
 const indexRouter = require("./routes/index");
 // we import the authors file from the routes
-const authorRouter = require("./routes/authors");
+const intakeRouter = require("./routes/intakes");
 // we import the books file from the routes
-const bookRouter = require("./routes/books");
+const studentRouter = require("./routes/students");
 
 app.set("view engine", "ejs");
 // we set to the app the views folder inside root
@@ -42,8 +42,8 @@ db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Mongoose!"));
 
 app.use("/", indexRouter);
-app.use("/authors", authorRouter);
-app.use("/books", bookRouter);
+app.use("/authors", intakeRouter);
+app.use("/books", studentRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   console.log("Running on port 3000");

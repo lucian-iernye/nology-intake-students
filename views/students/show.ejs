@@ -1,0 +1,31 @@
+<h2 class="page-header"><%= student.title %></h2>
+<div class="student-details">
+  <div>
+    <img
+      class="student-cover"
+      src="<%= student.coverImagePath %> "
+      alt="<%= student.title %> "
+    />
+    <div class="student-details-btn-grid">
+      <a class="btn btn-primary" href="/students/<%= student.id %>/edit"
+        >Edit</a
+      >
+      <%- include("../partials/deleteForm", {url: `/students/${student.id}`}) %>
+      <a
+        class="btn btn-primary student-details-intake-button"
+        href="/intakes/<%= student.intake.id %>"
+        >View Intake</a
+      >
+    </div>
+  </div>
+  <div class="student-details-grid">
+    <div class="student-details-label">Intake:</div>
+    <div><%= student.intake.name %></div>
+    <div class="student-details-label">Publish Date:</div>
+    <div><%= student.publishDate.toDateString() %></div>
+    <div class="student-details-label">Page Count:</div>
+    <%= student.pageCount %>
+    <div class="student-details-label">Description:</div>
+    <%= student.description %>
+  </div>
+</div>

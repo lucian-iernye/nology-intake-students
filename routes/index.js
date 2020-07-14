@@ -1,17 +1,17 @@
 const express = require("express");
 // router is the controller from MVC
 const router = express.Router();
-// we import the book model
-const Book = require("../models/book");
+// we import the student model
+const Student = require("../models/student");
 
 router.get("/", async (req, res) => {
-  let books = [];
+  let students = [];
   try {
-    books = await Book.find().sort({ createAt: "desc" }).limit(10).exec();
+    students = await Student.find().sort({ createAt: "desc" }).limit(10).exec();
   } catch {
-    books = [];
+    students = [];
   }
-  res.render("index", { books: books });
+  res.render("index", { students: students });
 });
 
 // we export the router as a module and we import it as a file in server.js

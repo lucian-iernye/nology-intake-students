@@ -1,26 +1,26 @@
 <div class="form-row">
   <div class="form-item">
     <label for="name">Title</label>
-    <!-- we included the ejs code so we can import dinamicaly the title of the current book -->
-    <input type="text" name="title" value="<%=book.title %>" />
+    <!-- we included the ejs code so we can import dinamicaly the title of the current student -->
+    <input type="text" name="title" value="<%=student.title %>" />
   </div>
   <div class="form-item">
-    <label for="author">Author</label>
-    <select name="author" id="">
+    <label for="intake">Intake</label>
+    <select name="intake" id="">
       <!-- foreach function -->
-      <% authors.forEach(author => { %>
+      <% intakes.forEach(intake => { %>
       <!-- if this -->
-      <% if (author.id === book.author) { %>
+      <% if (intake.id === student.intake) { %>
       <!-- do this -->
       <option
         selected
-        label="<%= author.name %>"
-        value="<%= author.id %>"
+        label="<%= intake.name %>"
+        value="<%= intake.id %>"
       ></option>
       <!-- else  -->
       <% } else { %>
       <!-- do this -->
-      <option label="<%= author.name %>" value="<%= author.id %>"></option>
+      <option label="<%= intake.name %>" value="<%= intake.id %>"></option>
       <!-- end of if statement -->
       <% } %>
       <!-- end of forEach function -->
@@ -32,8 +32,8 @@
 <div class="form-row">
   <div class="form-item">
     <label for="title">Publish Date</label>
-    <input type="date" name="publishDate" id="" value="<%= book.publishDate ==
-    null ? "" : book.publishDate.toISOString().split("T")[0] %>">
+    <input type="date" name="publishDate" id="" value="<%= student.publishDate
+    == null ? "" : student.publishDate.toISOString().split("T")[0] %>">
   </div>
   <div class="form-item">
     <label for="title">Page Count</label>
@@ -42,7 +42,7 @@
       name="pageCount"
       id=""
       min="1"
-      value="<%= book.pageCount %>"
+      value="<%= student.pageCount %>"
     />
   </div>
 </div>
@@ -50,12 +50,12 @@
 <div class="form-row">
   <div class="form-item form-item-no-grow">
     <label for="title">Cover</label>
-    <input class="book-cover filepond" type="file" name="cover" />
+    <input class="student-cover filepond" type="file" name="cover" />
   </div>
   <div class="form-item">
     <label for="title">Description</label>
     <textarea name="description" id="" cols="30" rows="10">
-<%= book.description %></textarea
+<%= student.description %></textarea
     >
   </div>
 </div>

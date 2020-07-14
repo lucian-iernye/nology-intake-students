@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // we create the schema (table)
-const bookSchema = new mongoose.Schema({
+const studentSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -31,15 +31,15 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: {
+  intake: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "Author",
+    ref: "Intake",
   },
 });
 
 // to create a virtual variable
-bookSchema.virtual("coverImagePath").get(function () {
+studentSchema.virtual("coverImagePath").get(function () {
   if (this.coverImage != null && this.coverImageType != null) {
     return `data:${
       this.coverImageType
@@ -48,4 +48,4 @@ bookSchema.virtual("coverImagePath").get(function () {
 });
 
 // we export the schema created
-module.exports = mongoose.model("Book", bookSchema);
+module.exports = mongoose.model("Student", studentSchema);
