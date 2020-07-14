@@ -7,7 +7,7 @@ const Student = require("../models/student");
 router.get("/", async (req, res) => {
   let students = [];
   try {
-    students = await Student.find().sort({ createAt: "desc" }).limit(10).exec();
+    students = await Student.find().sort({ createAt: "desc" }).limit(12).exec();
   } catch {
     students = [];
   }
