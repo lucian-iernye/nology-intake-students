@@ -1,0 +1,61 @@
+<div class="form-row">
+  <div class="form-item">
+    <label for="name">Title</label>
+    <!-- we included the ejs code so we can import dinamicaly the title of the current book -->
+    <input type="text" name="title" value="<%=book.title %>" />
+  </div>
+  <div class="form-item">
+    <label for="author">Author</label>
+    <select name="author" id="">
+      <!-- foreach function -->
+      <% authors.forEach(author => { %>
+      <!-- if this -->
+      <% if (author.id === book.author) { %>
+      <!-- do this -->
+      <option
+        selected
+        label="<%= author.name %>"
+        value="<%= author.id %>"
+      ></option>
+      <!-- else  -->
+      <% } else { %>
+      <!-- do this -->
+      <option label="<%= author.name %>" value="<%= author.id %>"></option>
+      <!-- end of if statement -->
+      <% } %>
+      <!-- end of forEach function -->
+      <% }) %>
+    </select>
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item">
+    <label for="title">Publish Date</label>
+    <input type="date" name="publishDate" id="" value="<%= book.publishDate ==
+    null ? "" : book.publishDate.toISOString().split("T")[0] %>">
+  </div>
+  <div class="form-item">
+    <label for="title">Page Count</label>
+    <input
+      type="number"
+      name="pageCount"
+      id=""
+      min="1"
+      value="<%= book.pageCount %>"
+    />
+  </div>
+</div>
+
+<div class="form-row">
+  <div class="form-item form-item-no-grow">
+    <label for="title">Cover</label>
+    <input class="book-cover filepond" type="file" name="cover" />
+  </div>
+  <div class="form-item">
+    <label for="title">Description</label>
+    <textarea name="description" id="" cols="30" rows="10">
+<%= book.description %></textarea
+    >
+  </div>
+</div>

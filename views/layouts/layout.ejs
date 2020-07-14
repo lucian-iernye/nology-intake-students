@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- filepond package -->
+    <link
+      href="https://unpkg.com/filepond/dist/filepond.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"
+    ></script>
+    <script
+      defer
+      src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"
+    ></script>
+    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script defer src="/javascripts/fileUpload.js"></script>
+    <link id="main-css" rel="stylesheet" href="/stylesheets/main.css" />
+    <title>Node - Book Library</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- the code bellow is importing everything from other ejs files. -->
+      <!-- we include the header to render first -->
+      <%- include("../partials/header.ejs") %>
+      <div class="inner-container">
+        <!-- next we include to display the error message is we have any error -->
+        <%- include("../partials/errorMessage.ejs") %>
+
+        <!-- the rest of the ejs files -->
+        <%- body %>
+      </div>
+    </div>
+  </body>
+</html>
