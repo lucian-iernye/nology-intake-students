@@ -42,6 +42,7 @@ router.post("/", async (req, res) => {
   // we tell to the server which parameter we accept for our intake object
   const intake = new Intake({
     name: req.body.name,
+    location: req.body.location,
   });
   try {
     // if there is no error we want to render the user back to the page with all the intakes
@@ -92,6 +93,7 @@ router.put("/:id", async (req, res) => {
   try {
     intake = await Intake.findById(req.params.id);
     intake.name = req.body.name;
+    intake.location = req.body.location;
     await intake.save();
     res.redirect(`/intakes/${intake.id}`);
   } catch {

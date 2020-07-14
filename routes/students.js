@@ -24,18 +24,18 @@ const imageMimeTypes = [
 router.get("/", async (req, res) => {
   let query = Student.find();
   // logic to show the searched query and hide what doesn't match
-  if (req.query.title != null && req.query.title != "") {
-    // title comes from the database model -> student.title
-    query = query.regex("title", new RegExp(req.query.title, "i"));
+  if (req.query.name != null && req.query.name != "") {
+    // name comes from the database model -> student.name
+    query = query.regex("name", new RegExp(req.query.name, "i"));
   }
-  // to filter by date : publishedBefore and publishedAfter
-  if (req.query.publishedBefore != null && req.query.publishedBefore != "") {
+  // to filter by date : enrolledBefore and enrolledAfter
+  if (req.query.enrolledBefore != null && req.query.enrolledBefore != "") {
     // lte = less than or equal to - is checking into the database
-    query = query.lte("publishDate", req.query.publishedBefore);
+    query = query.lte("enrolmentDate", req.query.enrolledBefore);
   }
-  if (req.query.publishedAfter != null && req.query.publishedAfter != "") {
+  if (req.query.enrolledAfter != null && req.query.enrolledAfter != "") {
     // gte = greater than or equal to - is checking into the database
-    query = query.gte("publishDate", req.query.publishedAfter);
+    query = query.gte("enrolmentDate", req.query.enrolledAfter);
   }
   try {
     const students = await query.exec();
@@ -64,11 +64,12 @@ router.get("/new", async (req, res) => {
 // create Student route
 router.post("/", async (req, res) => {
   const student = new Student({
-    title: req.body.title,
+    name: req.body.name,
     intake: req.body.intake,
-    publishDate: new Date(req.body.publishDate),
-    pageCount: req.body.pageCount,
-    description: req.body.description,
+    enrolmentDate: new Date(req.body.enrolmentDate),
+    dateOfBirth: new Date(req.body.dateOfBirth),
+    age: req.body.age,
+    about: req.body.about,
   });
 
   saveCover(student, req.body.cover);
@@ -121,11 +122,12 @@ router.put("/:id", async (req, res) => {
 
   try {
     student = await Student.findById(req.params.id);
-    student.title = req.body.title;
+    student.name = req.body.name;
     student.intake = req.body.intake;
-    student.publishDate = new Date(req.body.publishDate);
-    student.pageCount = req.body.pageCount;
-    student.description = req.body.description;
+    student.enrolmentDate = new Date(req.body.enrolmentDate);
+    student.dateOfBirth = new Date(req.body.dateOfBirth);
+    student.age = req.body.age;
+    student.about = req.body.about;
     if (req.body.cover != null && req.body.cover !== "") {
       saveCover(student, req.body.cover);
     }

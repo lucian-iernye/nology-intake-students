@@ -8,6 +8,10 @@ const intakeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  location: {
+    type: String,
+    required: true,
+  },
 });
 
 // this is to prevent to remove the intake if he still have students added asociated with that particulary id

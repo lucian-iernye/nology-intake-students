@@ -3,5 +3,11 @@
     <label for="name">Name</label>
     <!-- we included the ejs code so we can import dinamicaly the name of the current intake -->
     <input type="text" name="name" value="<%= intake.name %>" />
+    <br />
+    <label for="name">Location</label>
+    <select name="location" id="location">
+      <option label="Bristol" value="Bristol"></option>
+      <option label="London" value="London"></option>
+    </select>
   </div>
 </div>

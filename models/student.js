@@ -3,18 +3,22 @@ const mongoose = require("mongoose");
 
 // we create the schema (table)
 const studentSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: true,
   },
-  description: {
+  about: {
     type: String,
   },
-  publishDate: {
+  enrolmentDate: {
     type: Date,
     required: true,
   },
-  pageCount: {
+  dateOfBirth: {
+    type: Date,
+    required: true,
+  },
+  age: {
     type: Number,
     required: true,
   },
